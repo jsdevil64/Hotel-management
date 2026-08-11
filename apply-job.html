@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply for Job - HotelJobs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen p-2 sm:p-4">
+  <div class="w-full max-w-sm bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col justify-between min-h-[680px]">
+    
+    <div>
+      <div class="bg-indigo-950 text-white p-4 flex items-center space-x-4">
+        <a href="job-details.html" class="text-lg">&larr;</a>
+        <h2 class="font-bold text-sm">Apply for Job</h2>
+      </div>
+
+      <div class="p-4 space-y-4">
+        <div class="bg-gray-50 p-3 rounded-2xl border flex items-center space-x-3">
+          <div class="w-10 h-10 border rounded-lg flex items-center justify-center font-bold text-amber-600 text-xs bg-amber-50">TAJ</div>
+          <div>
+            <h3 class="text-xs font-bold text-gray-800">Front Office Associate</h3>
+            <p class="text-[10px] text-gray-500">Taj Hotel, Chennai</p>
+            <p class="text-xs font-bold text-amber-600 mt-0.5">₹15,000 - ₹20,000 <span class="text-[9px] font-normal text-gray-400">/month</span></p>
+          </div>
+        </div>
+
+        <form action="application-success.html" class="space-y-3">
+          <h4 class="text-xs font-bold text-gray-800">Application Form</h4>
+
+          <div>
+            <label class="text-[10px] font-semibold text-gray-600 block mb-1">Full Name</label>
+            <input type="text" value="Priya S" class="w-full border rounded-xl p-2 text-xs outline-none focus:ring-1 focus:ring-indigo-600">
+          </div>
+
+          <div>
+            <label class="text-[10px] font-semibold text-gray-600 block mb-1">Email</label>
+            <input type="email" value="priya.s@example.com" class="w-full border rounded-xl p-2 text-xs outline-none focus:ring-1 focus:ring-indigo-600">
+          </div>
+
+          <div>
+            <label class="text-[10px] font-semibold text-gray-600 block mb-1">Phone Number</label>
+            <input type="tel" value="+91 98765 43210" class="w-full border rounded-xl p-2 text-xs outline-none focus:ring-1 focus:ring-indigo-600">
+          </div>
+
+          <div>
+            <label class="text-[10px] font-semibold text-gray-600 block mb-1">Resume</label>
+            <div class="border rounded-xl p-2 flex justify-between items-center text-xs">
+              <span class="text-gray-600 truncate text-[11px]">📄 Priya_Resume.pdf</span>
+              <button type="button" class="text-[10px] text-indigo-600 font-bold border border-indigo-600 px-2 py-0.5 rounded-lg">Change</button>
+            </div>
+            <p class="text-[9px] text-gray-400 mt-0.5">PDF, DOC, DOCX (Max 5MB)</p>
+          </div>
+
+          <div>
+            <label class="text-[10px] font-semibold text-gray-600 block mb-1">Cover Letter (Optional)</label>
+            <textarea rows="2" placeholder="Write something about yourself..." class="w-full border rounded-xl p-2 text-xs outline-none focus:ring-1 focus:ring-indigo-600"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-3 bg-indigo-900 hover:bg-indigo-950 text-white text-xs font-bold rounded-xl mt-2">
+            Submit Application
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="p-3 text-center text-[10px] text-gray-400 flex items-center justify-center space-x-1">
+      <span>🔒</span><span>Secure & Confidential</span>
+    </div>
+
+  </div>
+</body>
+</html>

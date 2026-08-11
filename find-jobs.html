@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Jobs - HotelJobs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen p-4">
+  <div class="w-full max-w-sm bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col justify-between min-h-[640px]">
+    
+    <div class="bg-indigo-900 text-white p-4 flex items-center justify-between">
+      <a href="student-dashboard.html" class="text-lg">&larr;</a>
+      <h1 class="font-bold text-sm">Find Jobs</h1>
+      <div class="flex items-center space-x-2">
+        <span>🔍</span>
+        <span>⚡</span>
+      </div>
+    </div>
+
+    <div class="p-4 space-y-3 border-b">
+      <div class="relative">
+        <input type="text" placeholder="Search job title, keyword or company..." class="w-full border rounded-xl pl-8 pr-3 py-2 text-xs focus:outline-none bg-gray-50">
+        <span class="absolute left-2.5 top-2 text-xs text-gray-400">🔍</span>
+      </div>
+
+      <div class="flex items-center space-x-1.5 overflow-x-auto text-[10px] pb-1">
+        <span class="bg-indigo-900 text-white px-3 py-1 rounded-full font-medium">All</span>
+        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full border">Full Time</span>
+        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full border">Part Time</span>
+        <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full border">Internship</span>
+        <span class="bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full border flex items-center space-x-1">⚙️ <span>Filters</span></span>
+      </div>
+      <p class="text-[10px] font-bold text-gray-500">120 Jobs Found</p>
+    </div>
+
+    <div class="p-4 space-y-3 overflow-y-auto max-h-[380px]">
+      
+      <a href="job-details.html" class="block p-3 border rounded-xl hover:shadow-md transition">
+        <div class="flex justify-between items-start">
+          <div class="flex space-x-3">
+            <div class="w-10 h-10 border rounded-lg flex items-center justify-center font-bold text-xs text-amber-600 bg-amber-50">TAJ</div>
+            <div>
+              <h3 class="font-bold text-xs text-gray-800">Front Office Associate</h3>
+              <p class="text-[10px] text-gray-500">Taj Hotel, Chennai</p>
+              <p class="text-[10px] text-gray-400">📍 Chennai, Tamil Nadu</p>
+              <p class="text-[10px] text-amber-600 font-bold mt-1">₹15,000 - ₹20,000 <span class="text-gray-400 font-normal">/month</span></p>
+            </div>
+          </div>
+          <button class="text-gray-400 hover:text-indigo-600">🔖</button>
+        </div>
+        <div class="flex justify-between items-center mt-2 pt-2 border-t text-[9px] text-gray-400">
+          <span>2 days ago</span>
+          <span class="bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full font-medium">Full Time</span>
+        </div>
+      </a>
+
+      <div class="p-3 border rounded-xl hover:shadow-md transition">
+        <div class="flex justify-between items-start">
+          <div class="flex space-x-3">
+            <div class="w-10 h-10 border rounded-lg flex items-center justify-center font-bold text-xs text-indigo-800 bg-indigo-50">ITC</div>
+            <div>
+              <h3 class="font-bold text-xs text-gray-800">Housekeeping Attendant</h3>
+              <p class="text-[10px] text-gray-500">ITC Grand Chola</p>
+              <p class="text-[10px] text-gray-400">📍 Chennai, Tamil Nadu</p>
+              <p class="text-[10px] text-amber-600 font-bold mt-1">₹13,000 - ₹16,000 <span class="text-gray-400 font-normal">/month</span></p>
+            </div>
+          </div>
+          <button class="text-gray-400 hover:text-indigo-600">🔖</button>
+        </div>
+        <div class="flex justify-between items-center mt-2 pt-2 border-t text-[9px] text-gray-400">
+          <span>3 days ago</span>
+          <span class="bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full font-medium">Full Time</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="border-t bg-white flex justify-around py-2 text-[10px] text-gray-500">
+      <a href="student-dashboard.html" class="flex flex-col items-center hover:text-indigo-600">
+        <span>🏠</span>
+        <span>Home</span>
+      </a>
+      <a href="find-jobs.html" class="flex flex-col items-center text-indigo-700 font-bold">
+        <span>🔍</span>
+        <span>Find Jobs</span>
+      </a>
+      <a href="my-applications.html" class="flex flex-col items-center hover:text-indigo-600">
+        <span>📋</span>
+        <span>Applications</span>
+      </a>
+      <a href="saved-jobs.html" class="flex flex-col items-center hover:text-indigo-600">
+        <span>❤️</span>
+        <span>Saved</span>
+      </a>
+      <a href="student-profile.html" class="flex flex-col items-center hover:text-indigo-600">
+        <span>👤</span>
+        <span>Profile</span>
+      </a>
+    </div>
+
+  </div>
+  <script type="module" src="find-jobs.js"></script>
+
+</body>
+</html>
+
