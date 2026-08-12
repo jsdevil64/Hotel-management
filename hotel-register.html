@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register Hotel - HotelJobs</title>
+  <title>Register Your Hotel - HotelJobs</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-100 flex items-center justify-center min-h-screen p-4 py-8">
@@ -11,12 +11,25 @@
   <div class="w-full max-w-md bg-white rounded-3xl p-6 md:p-8 shadow-xl border border-slate-200">
     
     <div class="text-center mb-6">
-      <h2 class="text-2xl font-bold text-slate-800">Register Your Hotel 🏨</h2>
+      <h2 class="text-2xl font-bold text-slate-800">Register Your Hotel</h2>
       <p class="text-xs text-slate-500 mt-1">Hire top talent for your restaurant or hotel</p>
     </div>
 
     <form id="hotelRegisterForm" class="space-y-4">
       
+      <div class="flex flex-col items-center justify-center mb-4">
+        <div class="relative w-20 h-20 rounded-2xl bg-slate-100 border-2 border-indigo-500 flex items-center justify-center overflow-hidden shadow-sm">
+          <img id="logoPreview" src="https://via.placeholder.com/150" alt="Logo Preview" class="w-full h-full object-cover hidden">
+          <svg id="defaultBuilding" class="w-10 h-10 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0h4m-4 0V9a2 2 0 012-2h2a2 2 0 012 2v12"></path>
+          </svg>
+        </div>
+        <label for="hotelLogo" class="mt-2 text-xs font-bold text-indigo-900 cursor-pointer hover:underline">
+          🏨 Upload Hotel Logo
+        </label>
+        <input type="file" id="hotelLogo" accept="image/*" class="hidden">
+      </div>
+
       <div>
         <label class="block text-xs font-semibold text-slate-700 mb-1">Hotel / Restaurant Name</label>
         <input type="text" id="hotelName" required placeholder="e.g., Grand Palace Hotel" 
@@ -50,6 +63,12 @@
       <div>
         <label class="block text-xs font-semibold text-slate-700 mb-1">Password</label>
         <input type="password" id="password" required placeholder="••••••••" 
+          class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50">
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold text-slate-700 mb-1">Confirm Password</label>
+        <input type="password" id="confirmPassword" required placeholder="••••••••" 
           class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-slate-50">
       </div>
 
