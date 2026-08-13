@@ -1,135 +1,57 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hotel Dashboard - HotelJobs</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex justify-center items-center min-h-screen p-2 sm:p-4">
-  <div class="w-full max-w-sm bg-gray-50 rounded-3xl shadow-xl overflow-hidden flex flex-col justify-between min-h-[680px] relative">
-    
-    <div>
-      <div class="bg-indigo-950 text-white p-4 flex justify-between items-center shadow-md">
-        <button onclick="toggleSidebar()" class="text-white focus:outline-none p-1 rounded-lg hover:bg-indigo-900 transition">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
+<body class="bg-slate-100 min-h-screen">
 
-        <h2 class="font-bold text-sm tracking-wide">Hotel Dashboard</h2>
+  <header class="bg-indigo-900 text-white p-4 shadow-md flex justify-between items-center px-6">
+    <h1 class="text-xl font-bold">Hotel Management</h1>
+    <button id="logoutBtn" class="bg-red-500 hover:bg-red-600 px-3 py-1.5 rounded-lg text-xs font-bold transition">Logout</button>
+  </header>
 
-        <a href="hotel-pricing.html" class="bg-amber-400 text-indigo-950 font-extrabold text-[10px] px-2.5 py-1 rounded-full shadow">
-          👑 Upgrade
-        </a>
+  <main class="max-w-4xl mx-auto mt-6 p-4">
+    <div class="bg-white rounded-2xl p-6 shadow-md mb-6 border border-slate-200 flex items-center space-x-4">
+      <div class="w-16 h-16 rounded-2xl bg-indigo-50 flex items-center justify-center overflow-hidden border border-indigo-200">
+        <img id="hotelLogoDisplay" src="https://via.placeholder.com/150" alt="Hotel Logo" class="w-full h-full object-cover">
       </div>
-
-      <div class="p-4 space-y-4">
-        <div class="bg-gradient-to-r from-indigo-900 to-indigo-800 text-white p-4 rounded-2xl shadow-sm">
-          <h3 class="text-xs font-bold">Welcome, Grand Hotel 👋</h3>
-          <p class="text-[10px] text-indigo-200 mt-1">Manage your job postings and applicants easily.</p>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div class="bg-white p-3 rounded-2xl border shadow-sm">
-            <span class="text-indigo-900 font-extrabold text-lg">12</span>
-            <p class="text-[10px] text-gray-500 font-semibold">Active Jobs</p>
-          </div>
-          <div class="bg-white p-3 rounded-2xl border shadow-sm">
-            <span class="text-emerald-600 font-extrabold text-lg">48</span>
-            <p class="text-[10px] text-gray-500 font-semibold">Total Applicants</p>
-          </div>
-        </div>
-
-        <a href="post-job.html" class="block w-full py-3 bg-indigo-900 hover:bg-indigo-950 text-white font-bold text-center rounded-xl text-xs shadow transition">
-          ➕ Post a New Job
-        </a>
-      </div>
-    </div>
-
-    <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 z-40"></div>
-
-    <div id="sidebar-menu" class="fixed top-0 left-0 h-full w-64 bg-indigo-950 text-white shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out z-50 p-5 flex flex-col justify-between">
-      
       <div>
-        <div class="flex justify-between items-center pb-4 border-b border-indigo-900">
-          <div class="flex items-center space-x-2">
-            <span class="text-xl">🏨</span>
-            <span class="font-extrabold text-sm text-amber-400">HotelJobs</span>
-          </div>
-          <button onclick="toggleSidebar()" class="text-gray-300 hover:text-white text-lg font-bold">✕</button>
-        </div>
-
-        <div class="py-4 border-b border-indigo-900 flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-full bg-indigo-800 flex items-center justify-center font-bold text-amber-400">GH</div>
-          <div>
-            <h4 class="text-xs font-bold">Grand Hotel & Suites</h4>
-            <p class="text-[9px] text-indigo-300">Recruiter Account</p>
-          </div>
-        </div>
-
-        <nav class="mt-4 space-y-2 text-xs font-medium">
-          <a href="hotel-dashboard.html" class="flex items-center space-x-3 p-2.5 rounded-xl bg-indigo-900 text-amber-400 font-bold">
-            <span>🏠</span><span>Dashboard</span>
-          </a>
-          <a href="post-job.html" class="flex items-center space-x-3 p-2.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 transition">
-            <span>➕</span><span>Post New Job</span>
-          </a>
-          <a href="manage-jobs.html" class="flex items-center space-x-3 p-2.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 transition">
-            <span>📋</span><span>Manage Jobs</span>
-          </a>
-          <a href="applicants.html" class="flex items-center space-x-3 p-2.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 transition">
-            <span>👨‍🎓</span><span>Applicants List</span>
-          </a>
-          <a href="hotel-pricing.html" class="flex items-center space-x-3 p-2.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 transition">
-            <span>👑</span><span>Subscription Plans</span>
-          </a>
-          <a href="hotel-profile.html" class="flex items-center space-x-3 p-2.5 rounded-xl hover:bg-indigo-900/60 text-indigo-100 transition">
-            <span>⚙️</span><span>Hotel Profile Settings</span>
-          </a>
-        </nav>
+        <h2 id="hotelNameDisplay" class="text-xl font-bold text-slate-800">Loading...</h2>
+        <p id="ownerNameDisplay" class="text-xs text-slate-500">Owner / Manager Name</p>
+        <p id="locationDisplay" class="text-xs text-indigo-700 font-semibold mt-1">Location</p>
       </div>
-
-      <div class="pt-4 border-t border-indigo-900">
-        <button onclick="handleLogout()" class="w-full py-2.5 bg-red-600/20 hover:bg-red-600 text-red-300 hover:text-white font-bold rounded-xl text-xs flex items-center justify-center space-x-2 transition">
-          <span>🚪</span><span>Logout</span>
-        </button>
-      </div>
-
     </div>
+  </main>
 
-    <div class="bg-white border-t flex justify-around py-2 text-[10px] text-gray-500">
-      <a href="hotel-dashboard.html" class="flex flex-col items-center text-indigo-600 font-bold"><span>🏠</span><span>Home</span></a>
-      <a href="post-job.html" class="flex flex-col items-center hover:text-indigo-600"><span>➕</span><span>Post</span></a>
-      <a href="manage-jobs.html" class="flex flex-col items-center hover:text-indigo-600"><span>📋</span><span>Jobs</span></a>
-      <a href="hotel-profile.html" class="flex flex-col items-center hover:text-indigo-600"><span>👤</span><span>Profile</span></a>
-    </div>
+  <script type="module">
+    import { auth, db, doc, getDoc } from './firebase-config.js';
+    import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-  </div>
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const docRef = doc(db, "hotels", user.uid);
+        const docSnap = await getDoc(docRef);
 
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar-menu');
-      const overlay = document.getElementById('sidebar-overlay');
-
-      if (sidebar.classList.contains('-translate-x-full')) {
-        // Open Sidebar
-        sidebar.classList.remove('-translate-x-full');
-        overlay.classList.remove('opacity-0', 'pointer-events-none');
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          document.getElementById('hotelNameDisplay').innerText = data.hotelName || "Hotel Name";
+          document.getElementById('ownerNameDisplay').innerText = `Owner: ${data.ownerName || ''}`;
+          document.getElementById('locationDisplay').innerText = `📍 ${data.location || ''}`;
+          if (data.hotelLogo) {
+            document.getElementById('hotelLogoDisplay').src = data.hotelLogo;
+          }
+        }
       } else {
-        // Close Sidebar
-        sidebar.classList.add('-translate-x-full');
-        overlay.classList.add('opacity-0', 'pointer-events-none');
+        window.location.href = "hotel-login.html";
       }
-    }
+    });
 
-    function handleLogout() {
-      if (confirm('Logout panna virumbugireergala?')) {
-        localStorage.clear();
-        window.location.href = 'hotel-login.html';
-      }
-    }
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      signOut(auth).then(() => { window.location.href = "hotel-login.html"; });
+    });
   </script>
 </body>
 </html>
-
