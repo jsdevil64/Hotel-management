@@ -1,28 +1,30 @@
-import { auth, db, doc, getDoc } from './firebase-config.js';
-import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+import { auth, db } from './firebase-config.js';
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+// 1. Auth State Check & Fetch Student Profile
 onAuthStateChanged(auth, async (user) => {
   if (user) {
-    console.log("Logged in UID:", user.uid);
+    console.log("Logged in User UID:", user.uid);
 
     try {
-      // 1. Fetch Student Data
+      // நீங்கள் Register செய்த Data-வை Firestore 'students' collection-ல் இருந்து எடுக்கிறது
       const docRef = doc(db, "students", user.uid);
       const studentSnap = await getDoc(docRef);
 
       if (studentSnap.exists()) {
         const data = studentSnap.data();
-        console.log("Student Data Found:", data);
 
-        // பெயர் எந்த பெயரில் இருந்தாலும் (name / studentName / fullName) கண்டறியும்
-        const displayName = data.name || data.studentName || data.fullName || "Student";
-        const displayDept = data.department || data.dept || "Hotel Management";
-        const displayCollege = data.collegeName || data.college || "";
+        // 🎯 நீங்கள் Register செய்த பெயர், கல்லூரி, துறை தானாக மாறும்
+        const name = data.name || data.studentName || data.fullName || "Student";
+        const dept = data.department || data.dept || "Hotel Management";
+        const college = data.collegeName || data.college || "";
 
-        document.getElementById('studentName').innerText = `Hello, ${displayName} 👋`;
-        document.getElementById('studentRole').innerText = `${displayDept} ${displayCollege ? '• ' + displayCollege : ''}`;
+        document.getElementById('studentName').innerText = `Hello, ${name} 👋`;
+        document.getElementById('studentRole').innerText = `${dept} ${college ? '• ' + college : ''}`;
 
+        // Profile Photo இருந்தால் மாறும்
         if (data.profilePhoto || data.photoUrl) {
           const photoImg = document.getElementById('studentPhoto');
           photoImg.src = data.profilePhoto || data.photoUrl;
@@ -30,12 +32,11 @@ onAuthStateChanged(auth, async (user) => {
           document.getElementById('defaultAvatar')?.classList.add('hidden');
         }
       } else {
-        console.log("Firestore document not found for this UID!");
+        console.log("No student record found for UID:", user.uid);
         document.getElementById('studentName').innerText = "Hello, Student 👋";
       }
-
     } catch (err) {
-      console.error("Firestore Error:", err);
+      console.error("Firestore Fetch Error:", err);
       document.getElementById('studentName').innerText = "Hello, Student 👋";
     }
 
@@ -48,6 +49,7 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
+// Fetch Posted Jobs
 async function loadJobs() {
   const container = document.getElementById('jobsContainer');
   if (!container) return;
@@ -104,9 +106,10 @@ async function loadJobs() {
   }
 }
 
-// Logout Action
+// Logout Button Action
 document.getElementById('logoutBtn')?.addEventListener('click', () => {
   signOut(auth).then(() => {
     window.location.href = "student-login.html";
   });
 });
+      
