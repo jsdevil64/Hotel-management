@@ -2,59 +2,62 @@ import { auth, db, doc, getDoc } from './firebase-config.js';
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// 1. Auth Check & Dynamic Data Fetching
 onAuthStateChanged(auth, async (user) => {
   if (user) {
+    console.log("Logged in UID:", user.uid);
+
     try {
-      // Firebase Firestore-ல் இருந்து நீங்கள் Register செய்த Data-வை எடுக்கிறது
-      const studentSnap = await getDoc(doc(db, "students", user.uid));
-      
+      // 1. Fetch Student Data
+      const docRef = doc(db, "students", user.uid);
+      const studentSnap = await getDoc(docRef);
+
       if (studentSnap.exists()) {
         const data = studentSnap.data();
+        console.log("Student Data Found:", data);
 
-        // 🎯 நீங்கள் Register செய்த பெயர் இங்கே dynamic-ஆக மாறும்
-        if (data.name) {
-          document.getElementById('studentName').innerText = `Hello, ${data.name} 👋`;
-        }
-        
-        // 🎯 கல்லூரி மற்றும் துறை விவரங்கள்
-        const dept = data.department || 'Student';
-        const college = data.collegeName || '';
-        document.getElementById('studentRole').innerText = `${dept} ${college ? '• ' + college : ''}`;
+        // பெயர் எந்த பெயரில் இருந்தாலும் (name / studentName / fullName) கண்டறியும்
+        const displayName = data.name || data.studentName || data.fullName || "Student";
+        const displayDept = data.department || data.dept || "Hotel Management";
+        const displayCollege = data.collegeName || data.college || "";
 
-        // 🎯 நீங்கள் Upload செய்த Profile Photo
-        if (data.profilePhoto) {
+        document.getElementById('studentName').innerText = `Hello, ${displayName} 👋`;
+        document.getElementById('studentRole').innerText = `${displayDept} ${displayCollege ? '• ' + displayCollege : ''}`;
+
+        if (data.profilePhoto || data.photoUrl) {
           const photoImg = document.getElementById('studentPhoto');
-          photoImg.src = data.profilePhoto;
+          photoImg.src = data.profilePhoto || data.photoUrl;
           photoImg.classList.remove('hidden');
-          document.getElementById('defaultAvatar').classList.add('hidden');
+          document.getElementById('defaultAvatar')?.classList.add('hidden');
         }
       } else {
-        console.log("No student data found for this UID!");
+        console.log("Firestore document not found for this UID!");
+        document.getElementById('studentName').innerText = "Hello, Student 👋";
       }
+
     } catch (err) {
-      console.error("Error loading profile:", err);
+      console.error("Firestore Error:", err);
+      document.getElementById('studentName').innerText = "Hello, Student 👋";
     }
 
     // 2. Load Jobs
     loadJobs();
 
   } else {
-    // லாகின் செய்யவில்லை என்றால் Login Page-க்கு அழைத்துச் செல்லும்
+    // Logged in செய்யவில்லை என்றால் Login Page-க்கு Redirect ஆகும்
     window.location.href = "student-login.html";
   }
 });
 
-// Fetch Posted Jobs Function
 async function loadJobs() {
   const container = document.getElementById('jobsContainer');
+  if (!container) return;
 
   try {
     const jobsSnap = await getDocs(collection(db, "jobs"));
 
     if (jobsSnap.empty) {
       container.innerHTML = `
-        <div class="bg-white p-6 rounded-2xl text-center border border-slate-200">
+        <div class="bg-white p-6 rounded-2xl text-center border border-slate-200 shadow-sm">
           <p class="text-xs text-slate-500">No job openings posted yet.</p>
         </div>`;
       return;
@@ -71,7 +74,7 @@ async function loadJobs() {
                 🏨
               </div>
               <div>
-                <h4 class="font-bold text-slate-800 text-sm">${job.title || 'Hotel Staff'}</h4>
+                <h4 class="font-bold text-slate-800 text-sm">${job.title || job.jobTitle || 'Hotel Staff'}</h4>
                 <p class="text-xs text-slate-500">${job.hotelName || 'Hotel'} • ${job.location || 'Location'}</p>
               </div>
             </div>
@@ -101,10 +104,9 @@ async function loadJobs() {
   }
 }
 
-// Logout
+// Logout Action
 document.getElementById('logoutBtn')?.addEventListener('click', () => {
   signOut(auth).then(() => {
     window.location.href = "student-login.html";
   });
 });
-
