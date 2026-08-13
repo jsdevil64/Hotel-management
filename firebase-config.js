@@ -27,5 +27,5 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 export { createUserWithEmailAndPassword, signInWithEmailAndPassword, doc, setDoc, collection, addDoc 
        };
-// firebase-config.js கடைசியில் இருக்க வேண்டியது:
-export { auth, db, doc, getDoc };
+
+
